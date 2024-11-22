@@ -35,7 +35,7 @@ A modern GUI application that converts DaVinci Resolve markers into YouTube chap
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/MinerAle00/chapter-maker
+git clone https://github.com/MineraleYT/chapter-maker
 cd chapter-maker
 ```
 
