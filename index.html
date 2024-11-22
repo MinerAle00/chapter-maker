@@ -12,6 +12,7 @@
             --link-color: #3498db;
             --border-color: #333;
             --heading-color: #4a9eff;
+            --code-bg: #2d2d2d;
         }
 
         * {
@@ -20,19 +21,33 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
             color: var(--text-color);
             background: var(--bg-color);
             display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
         }
 
         main {
             flex: 1;
             padding: 2rem;
-            margin-right: 250px;
-            max-width: 900px;
+            max-width: calc(100% - 250px);
+            margin: 0 auto;
         }
 
         nav {
@@ -42,14 +57,20 @@
             right: 0;
             top: 0;
             background: var(--nav-bg);
-            padding: 2rem;
+            padding: 2rem 1.5rem;
             border-left: 1px solid var(--border-color);
             overflow-y: auto;
         }
 
+        section {
+            margin-bottom: 3rem;
+            scroll-margin-top: 2rem;
+        }
+
         h1, h2 {
             color: var(--heading-color);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
         }
 
         h1 {
@@ -57,32 +78,100 @@
             margin-bottom: 2rem;
         }
 
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 2rem;
+        }
+
         p {
             margin-bottom: 1.5rem;
+            max-width: 800px;
+        }
+
+        .image-container {
+            max-width: 800px;
+            margin: 2rem 0;
         }
 
         img {
-            max-width: 100%;
+            width: 100%;
             height: auto;
             border-radius: 8px;
-            margin: 1.5rem 0;
             border: 1px solid var(--border-color);
+            display: block;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .nav-link {
             display: block;
             color: var(--link-color);
             text-decoration: none;
-            padding: 0.5rem 0;
-            transition: color 0.3s;
+            padding: 0.75rem 0.5rem;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
         }
 
         .nav-link:hover {
             color: var(--heading-color);
+            background-color: rgba(74, 158, 255, 0.1);
         }
 
-        .emoji {
-            margin-right: 0.5rem;
+        .nav-link.active {
+            color: var(--heading-color);
+            background-color: rgba(74, 158, 255, 0.1);
+        }
+
+        ul, ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            font-family: 'Monaco', 'Consolas', monospace;
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+        }
+
+        pre code {
+            padding: 0;
+            background: none;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-item {
+            background: var(--nav-bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                max-width: calc(100% - 270px);
+                padding: 2rem 1.5rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -90,9 +179,14 @@
                 flex-direction: column;
             }
 
+            .container {
+                flex-direction: column;
+            }
+
             main {
-                margin-right: 0;
-                padding: 1rem;
+                max-width: 100%;
+                margin: 0;
+                padding: 1.5rem;
             }
 
             nav {
@@ -101,27 +195,210 @@
                 height: auto;
                 border-left: none;
                 border-top: 1px solid var(--border-color);
+                margin-top: 2rem;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <main>
-        <h1>🎬 Chapter Maker for DaVinci Resolve</h1>
-        
-        <p>A modern GUI application that converts DaVinci Resolve markers into YouTube chapters format. This tool helps content creators easily generate properly formatted chapter timestamps for their YouTube videos.</p>
+    <div class="container">
+        <main>
+            <section id="overview">
+                <h1>📽️ Chapter Maker for DaVinci Resolve</h1>
+                <p>A modern GUI application that converts DaVinci Resolve markers into YouTube chapters format. This tool helps content creators easily generate properly formatted chapter timestamps for their YouTube videos.</p>
+            </section>
 
-        <h2>📸 Screenshots</h2>
-        <img src="images/chapter-maker.png" alt="Chapter Maker Interface">
-        <img src="images/davinci-markers.png" alt="DaVinci Markers">
-        <img src="images/davinci-export.png" alt="DaVinci Export">
-    </main>
+            <section id="features">
+                <h2>✨ Features</h2>
+                <div class="feature-list">
+                    <div class="feature-item">🎬 Converts DaVinci Resolve markers to YouTube chapters</div>
+                    <div class="feature-item">🌙 Modern dark mode interface</div>
+                    <div class="feature-item">📄 CSV export from DaVinci Resolve support</div>
+                    <div class="feature-item">⏱️ Automatic time format conversion for YouTube</div>
+                    <div class="feature-item">📋 One-click copy for easy pasting</div>
+                    <div class="feature-item">💾 Save chapters to text file</div>
+                    <div class="feature-item">🖥️ Cross-platform support</div>
+                    <div class="feature-item">📁 Source directory-based file saving</div>
+                </div>
+            </section>
 
-    <nav>
-        <h2>Navigation</h2>
-        <a href="#overview" class="nav-link">🎯 Overview</a>
-        <a href="#screenshots" class="nav-link">📸 Screenshots</a>
-        <a href="https://github.com/minerale00/chapter-maker" class="nav-link">📦 GitHub Repository</a>
-    </nav>
+            <section id="perfect-for">
+                <h2>🎯 Perfect for</h2>
+                <ul>
+                    <li>🎥 Content creators using DaVinci Resolve</li>
+                    <li>📺 YouTube video creators</li>
+                    <li>🎮 Gaming content creators</li>
+                    <li>📚 Tutorial makers</li>
+                    <li>🎨 Video editors</li>
+                </ul>
+            </section>
+
+            <section id="screenshots">
+                <h2>📸 Screenshots</h2>
+                <div class="image-container">
+                    <img src="images/chapter-maker.png" alt="Chapter Maker Interface" loading="lazy">
+                    <img src="images/davinci-markers.png" alt="DaVinci Markers" loading="lazy">
+                    <img src="images/davinci-export.png" alt="DaVinci Export" loading="lazy">
+                </div>
+            </section>
+
+            <section id="installation">
+                <h2>🚀 Installation</h2>
+                <h2>📋 Requirements</h2>
+                <ul>
+                    <li>Python 3.x</li>
+                    <li>Virtual environment (recommended)</li>
+                    <li>Dependencies listed in <code>requirements.txt</code></li>
+                </ul>
+
+                <ol>
+                    <li>Clone the repository:
+                        <pre><code>git clone https://github.com/MinerAle00/chapter-maker
+cd chapter-maker</code></pre>
+                    </li>
+                    <li>Create a virtual environment:
+                        <pre><code>python -m venv venv</code></pre>
+                    </li>
+                    <li>Activate the virtual environment:
+                        <p>On macOS/Linux:</p>
+                        <pre><code>source venv/bin/activate</code></pre>
+                        <p>On Windows:</p>
+                        <pre><code>venv\Scripts\activate</code></pre>
+                    </li>
+                    <li>Install dependencies:
+                        <pre><code>pip install -r requirements.txt</code></pre>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="usage">
+                <h2>📖 Usage</h2>
+                <h2>In DaVinci Resolve:</h2>
+                <ol>
+                    <li>Add markers to your timeline where you want chapters (use a specific color for chapters)</li>
+                    <li>Name your markers with chapter titles</li>
+                    <li>Export markers:
+                        <ul>
+                            <li>Go to the Index panel</li>
+                            <li>Click the three-dot menu (⋮)</li>
+                            <li>Filter to show only the marker color you used for chapters</li>
+                            <li>Click "Export Index" to save as CSV</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                <h2>In Chapter Maker:</h2>
+                <ol>
+                    <li>Run the application:
+                        <pre><code>python chapter-maker.py</code></pre>
+                    </li>
+                    <li>Use the interface:
+                        <ul>
+                            <li>Click "Select CSV File" to choose your exported Index CSV</li>
+                            <li>The parsed chapters will appear in the table</li>
+                            <li>Click "Copy All Chapters" to copy YouTube-formatted chapters</li>
+                            <li>Click "Save Chapters" to save the chapters to a text file</li>
+                        </ul>
+                    </li>
+                </ol>
+            </section>
+
+            <section id="csv-format">
+                <h2>📊 CSV Format</h2>
+                <p>The application expects a CSV file exported from DaVinci Resolve's Index with:</p>
+                <ul>
+                    <li><code>Record In</code>: Timestamp in format HH:MM:SS:FF</li>
+                    <li><code>Notes</code>: Chapter title/description</li>
+                </ul>
+            </section>
+
+            <section id="youtube-format">
+                <h2>📤 YouTube Chapter Format</h2>
+                <p>The application automatically formats chapters for YouTube requirements:</p>
+                <ul>
+                    <li>First chapter must start at 00:00</li>
+                    <li>Each chapter must be at least 10 seconds long</li>
+                    <li>Format: <code>MM:SS Chapter Title</code></li>
+                </ul>
+
+                <p>Example output:</p>
+                <pre><code>00:00 Intro
+01:30 Main Topic
+02:45 Demonstration
+05:15 Conclusion</code></pre>
+            </section>
+
+            <section id="tips">
+                <h2>💡 Tips</h2>
+                <ul>
+                    <li>Use a specific marker color for chapters to easily filter them in the Index</li>
+                    <li>Make sure your first marker in DaVinci Resolve is at the start (00:00)</li>
+                    <li>Keep chapter titles concise but descriptive</li>
+                    <li>YouTube requires a minimum of 3 chapters</li>
+                    <li>Chapters must be in chronological order</li>
+                    <li>Each chapter must be at least 10 seconds long</li>
+                </ul>
+            </section>
+
+            <section id="workflow">
+                <h2>🎬 Workflow</h2>
+                <ol>
+                    <li>Edit your video in DaVinci Resolve</li>
+                    <li>Add colored markers at chapter points</li>
+                    <li>Open Index panel and filter by your chapter marker color</li>
+                    <li>Export Index to CSV</li>
+                    <li>Use Chapter Maker to convert to YouTube format</li>
+                    <li>Copy and paste into your YouTube description</li>
+                </ol>
+            </section>
+        </main>
+
+        <nav>
+            <h2>Navigation</h2>
+            <a href="#overview" class="nav-link">📽️ Overview</a>
+            <a href="#features" class="nav-link">✨ Features</a>
+            <a href="#perfect-for" class="nav-link">🎯 Perfect For</a>
+            <a href="#screenshots" class="nav-link">📸 Screenshots</a>
+            <a href="#installation" class="nav-link">🚀 Installation</a>
+            <a href="#usage" class="nav-link">📖 Usage</a>
+            <a href="#csv-format" class="nav-link">📊 CSV Format</a>
+            <a href="#youtube-format" class="nav-link">📤 YouTube Format</a>
+            <a href="#tips" class="nav-link">💡 Tips</a>
+            <a href="#workflow" class="nav-link">🎬 Workflow</a>
+            <a href="https://github.com/minerale00/chapter-maker" class="nav-link" target="_blank" rel="noopener">📦 GitHub Repository</a>
+        </nav>
+    </div>
+
+    <script>
+        // Highlight active section in navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+
+        function updateActiveLink() {
+            const fromTop = window.scrollY + 100;
+
+            sections.forEach(section => {
+                const link = document.querySelector(`.nav-link[href="#${section.id}"]`);
+                if (!link) return;
+
+                const { top, bottom } = section.getBoundingClientRect();
+                const sectionTop = top + window.scrollY;
+                const sectionBottom = bottom + window.scrollY;
+
+                if (fromTop >= sectionTop && fromTop <= sectionBottom) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+        updateActiveLink();
+    </script>
 </body>
 </html>
