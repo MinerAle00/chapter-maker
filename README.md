@@ -35,7 +35,7 @@ A modern GUI application that converts DaVinci Resolve markers into YouTube chap
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone https://github.com/MinerAle00/chapter-maker
 cd chapter-maker
 ```
 
@@ -80,7 +80,7 @@ pip install -r requirements.txt
 ### In Chapter Maker:
 1. Run the application:
 ```bash
-python modern_chapter_maker.py
+python chapter-maker.py
 ```
 
 2. Use the interface:
